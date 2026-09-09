@@ -9,7 +9,9 @@ export const CreatePostModel = ({ open, onClose }) => {
                     <div className="flex flex-col justify-center">
                         <span className="bg-white p-4 rounded">
                             <div className="flex justify-end cursor-pointer">
-                                <CloseIcon />
+                                <div onClick={onClose}>
+                                    <CloseIcon />
+                                </div>
                             </div>
                             <div>
                                 <Input placeholder={"Title"}></Input>

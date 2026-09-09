@@ -8,7 +8,7 @@ interface ButtonProps {
     text: string;
     startIcon?: any;
     endIcon?: any;
-    onClick: () => void;
+    onClick?: () => void;
 }
 
 const varientStyle= {
@@ -28,7 +28,7 @@ const defaultStyles= "rounded-md flex cursor-pointer"
 
 export const Button = (props: ButtonProps) => {  // this button component takes the props ButtonProps as the input mentioned above and returns a button according to these properties 
 
-    return <button className={`${varientStyle[props.variant]} ${defaultStyles} ${sizeStyles[props.size]}`}>{props.startIcon ? <div className="pr-1 flex items-center">{props.startIcon}</div> : null} {props.text} {props.endIcon}</button>
+    return <button onClick={props.onClick} className={`${varientStyle[props.variant]} ${defaultStyles} ${sizeStyles[props.size]}`}>{props.startIcon ? <div className="pr-1 flex items-center">{props.startIcon}</div> : null} {props.text} {props.endIcon}</button>
 }
 
 {/* <Button variant="primary" size="md" text="Click me" startIcon={"*"} onClick={() =>{}}></Button> */}

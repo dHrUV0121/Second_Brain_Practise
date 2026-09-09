@@ -2,6 +2,7 @@
 // import heroImg from './assets/hero.png'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from './assets/vite.svg'
+import { useState } from 'react'
 import './App.css'
 import {Button} from "./components/Button"
 import { Card } from './components/Card'
@@ -10,11 +11,17 @@ import { PlusIcon } from './components/icons/plusIcons'
 import { ShareIcon } from './components/icons/shareIcon'
 
 function App() {
+  const [modelOpen, setModelOpen]= useState(false);
+
   return (
     <div className='p-4'>
-      <CreatePostModel open={true}></CreatePostModel>
+      <CreatePostModel open={modelOpen} onClose={()=> {
+        setModelOpen(false);
+      }}></CreatePostModel>
       <div className='flex justify-end gap-3 p-4'>
-        <Button startIcon={<PlusIcon size='md'/>} variant='primary' text='Add Content' size='md'></Button>
+        <Button onClick={()=> {
+          setModelOpen(true);
+        }} startIcon={<PlusIcon size='md'/>} variant='primary' text='Add Content' size='md'></Button>
         <Button startIcon={<ShareIcon size='md'></ShareIcon>} variant='secondary' text='Share Brain' size='md'></Button>
       </div>
       <div className='flex gap-3'>
