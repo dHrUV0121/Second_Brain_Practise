@@ -1,5 +1,6 @@
 import { Button } from "./Button"
 import { CloseIcon } from "./icons/closeIcon"
+import { Input } from "./InputBox"
 
 export const CreatePostModel = ({ open, onClose }) => {
     return (
@@ -26,8 +27,3 @@ export const CreatePostModel = ({ open, onClose }) => {
     )
 }
 
-const Input= ({onChange, placeholder}: {onChange: ()=> void})=> {
-    return <div>
-        <input placeholder={placeholder} type="text" className="px-4 py-2 rounded border border-gray-300 m-1" onChange={onChange} />
-    </div>
-}
