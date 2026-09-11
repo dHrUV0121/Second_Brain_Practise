@@ -1,9 +1,16 @@
 import { Dashboard } from "./pages/dashboard";
+import { Signin } from "./pages/signin";
 import { Signup } from "./pages/signup";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App(){
-  // return <Dashboard></Dashboard>
-  return <Signup></Signup>
+  return <BrowserRouter>
+    <Routes>
+      <Route path="/signup" element={<Signup></Signup>} />
+      <Route path="/login" element={<Signin></Signin>} />
+      <Route path="/dashboard" element={<Dashboard></Dashboard>} />
+    </Routes>
+  </BrowserRouter>
 }
 
 export default App;

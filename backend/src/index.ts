@@ -9,12 +9,13 @@ import bcrypt from "bcrypt";
 import { connectDB } from "./ds";
 import { userMiddleware } from "./middlewares";
 import crypto from "crypto";
+import cors from "cors";
 
 const app= express();
-
 const JWT_USER_SECRET = process.env.JWT_USER_SECRET;
 
 app.use(express.json());
+app.use(cors());
 
 app.post("/api/v1/signup", async (req, res) =>{
 

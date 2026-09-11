@@ -7,7 +7,7 @@ export const Signin= ()=>{
             <Input placeholder="Username"></Input>
             <Input placeholder="Password"></Input>
             <div className="flex justify-center pt-4">
-                <Button variant="primary" size="md" text="Signin"></Button>
+                <Button variant="primary" size="md" text="Login"></Button>
             </div>
         </div>
 
