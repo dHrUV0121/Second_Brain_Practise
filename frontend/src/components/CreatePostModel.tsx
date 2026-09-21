@@ -1,8 +1,34 @@
+import { useRef, useState } from "react"
 import { Button } from "./Button"
 import { CloseIcon } from "./icons/closeIcon"
 import { Input } from "./InputBox"
+import axios from "axios"
+import { BACKEND_URL } from "../config"
+
+enum ContentType {
+    Youtube= "youtube",
+    Twitter= "twitter"
+}
 
 export const CreatePostModel = ({ open, onClose }) => {
+    const titleRef= useRef<HTMLInputElement>(null);
+    const linkRef= useRef<HTMLInputElement>(null);
+    const [type, setType]= useState(ContentType.Youtube)
+
+    async function addContent(){
+        const title= titleRef.current?.value;
+        const link= titleRef.current?.value;
+
+        await axios.post(`${BACKEND_URL}api/v1/content`,{
+            link,
+            title,
+            type
+        }, {
+            headers:{
+                "Authorization": localStorage.getItem("token")
+            }
+        })
+    }
     return (
         <div>
             {open && (
@@ -13,10 +39,14 @@ export const CreatePostModel = ({ open, onClose }) => {
                                 <CloseIcon />
                             </div>
                             <div>
-                                <Input placeholder={"Title"}></Input>
-                                <Input placeholder={"Link"}></Input>
+                                <Input ref={titleRef} placeholder={"Title"}></Input>
+                                <Input ref={linkRef} placeholder={"Link"}></Input>
+                                <div className="flex gap-1 p-2">
+                                    <Button size="sm" text="Youtube" variant={type === ContentType.Youtube? "primary": "secondary"} onClick={() =>{setType(ContentType.Youtube)}}></Button>
+                                    <Button size="sm" text="Twitter" variant={type === ContentType.Twitter? "primary": "secondary"} onClick={() =>{setType(ContentType.Twitter)}}></Button>
+                                </div>
                                 <div className="flex justify-end">
-                                    <Button variant="primary" text="Submit" size="sm"></Button>                                    
+                                    <Button onClick={addContent} variant="primary" text="Submit" size="sm"></Button>                                    
                                 </div>
                             </div>
                         </span>
