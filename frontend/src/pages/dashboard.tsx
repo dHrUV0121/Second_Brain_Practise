@@ -6,9 +6,11 @@ import { CreatePostModel } from '../components/CreatePostModel'
 import { PlusIcon } from '../components/icons/plusIcons'
 import { ShareIcon } from '../components/icons/shareIcon'
 import { SideBar } from '../components/Sidebar'
+import { useContent } from '../hooks/useContent'
 
 export function Dashboard() {
   const [modelOpen, setModelOpen]= useState(false);
+  const contents= useContent();
 
   return (
     <div>
@@ -24,8 +26,10 @@ export function Dashboard() {
           <Button startIcon={<ShareIcon size='md'></ShareIcon>} variant='secondary' text='Share Brain' size='md'></Button>
         </div>
         <div className='flex gap-3'>
-          <Card title='Post 1' link='https://x.com/congphuc_/status/2096856748212748531?s=20' type='twitter'></Card>
-          <Card title='Post 2' link='https://www.youtube.com/watch?v=75hRtWaVByE' type='youtube'></Card>
+          {contents.map(({title, link, type}) => <Card  
+            link={link}
+            title={title}
+            type={type}></Card>)}
         </div>
       </div>
     </div>

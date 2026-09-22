@@ -17,7 +17,7 @@ export const CreatePostModel = ({ open, onClose }) => {
 
     async function addContent(){
         const title= titleRef.current?.value;
-        const link= titleRef.current?.value;
+        const link= linkRef.current?.value;
 
         await axios.post(`${BACKEND_URL}api/v1/content`,{
             link,
